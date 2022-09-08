@@ -1,0 +1,111 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <bits/stdc++.h>
+#include <chrono>
+#include <deque>
+
+void sortStrings(std::deque<std::string> &v)
+{
+  
+  int smallest = 0;
+  //std::de<std::string> stupid;
+  
+  for(int i = 0; i < v.size()-1; i++)
+    {
+      smallest = i;
+      
+      for(int j = i+1; j < v.size()-1; j++)
+	{
+          if(v[j].compare(v[smallest]) < 0) // A value < 0 : if v[j] is shorter than v[smallest] or, first character that doesn't match is smaller than v[smallest].
+	    smallest = j;
+	}
+      
+      std::string temp = v[smallest];
+      
+      std::cout << "ihateprints         " << temp << std::endl;
+      v.erase(v.begin()+smallest);
+      v.push_front(temp);
+
+      for(std::string w : v)
+	std::cout << w << std::endl;
+
+      std::cout << "\n" << std::endl;
+      
+      
+    }
+
+  
+}
+
+const int ch_MAX = 26;
+std::deque<std::string> randomStrings(int wordCount) //for testing
+{
+  char alpha[ch_MAX] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g',
+    'h', 'i', 'j', 'k', 'l', 'm', 'n',
+    'o', 'p', 'q', 'r', 's', 't', 'u',
+    'v', 'w', 'x', 'y', 'z' };
+  std::deque<std::string> strings;
+
+  for (int i = 0; i<wordCount; i++)
+    {
+      std::string string = "";
+      for (int j = 0; j<10; j++)
+	{
+	  string = string + alpha[rand() % ch_MAX];
+	}
+     
+      strings.push_back(string);
+    }
+  
+  return strings;
+}
+
+
+int main()
+{
+  std::string i; //input string
+  std::string t; //temp string
+  std::deque<std::string> vs; //vector of strings
+
+  int stringsNum = 10;
+  vs = randomStrings(stringsNum); //random word testing
+
+  //print each word on a new line
+  for(std::string w : vs)
+    std::cout << w << std::endl;
+
+  std::cout << "\n";
+  
+  //put each word into the vector
+  //while(std::getline(std::cin, t))
+  //{
+  //  if(t == "")
+  //	break;
+  //  
+    //  vs.emplace_back(t);
+    //}
+    stringsNum = vs.size();
+
+  auto start = std::chrono::high_resolution_clock::now(); //startpoint
+
+  //sort the vector
+  //std::sort(vs.begin(), vs.end()); //600000 strings: 347483 microseconds
+  sortStrings(vs); //3 gwords - 7 microseconds
+  
+  auto stop = std::chrono::high_resolution_clock::now(); //endpoint
+
+  //print each word on a new line
+  for(std::string w : vs)
+    std::cout << w << std::endl;
+
+  // Get duration. Substart timepoints to
+  // get duration. To cast it to proper unit
+  // use duration cast method
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+ 
+  std::cout << "Time taken to sort " << stringsNum << " strings: " << duration.count() << " microseconds" << std::endl;
+
+  
+  return 0;
+}
