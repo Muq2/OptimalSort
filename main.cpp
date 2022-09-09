@@ -78,16 +78,17 @@ int main()
   std::deque<std::string> vs; //vector of strings
 
   int stringsNum = 1000;
-  vs = randomStrings(stringsNum); //random word testing
+  //vs = randomStrings(stringsNum); //random word testing
 
   //print each word on a new line
+  /*
   for(std::string w : vs)
     std::cout << w << std::endl;
 
   std::cout << "\n";
+  */
   
   //put each word into the vector
-  /*
   while(std::getline(std::cin, t))
     {
       if(t == "")
@@ -95,7 +96,7 @@ int main()
       
       vs.emplace_back(t);
     }
-  */
+  
     
   stringsNum = vs.size();
 
