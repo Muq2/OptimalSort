@@ -35,9 +35,9 @@ void sortStrings2(std::deque<std::string> &v) //discovered merging
   if (v.size() <= 1)
     return;
 
-  auto iter = v.begin() + v.size() / 2;
-  std::deque<std::string> v1(v.begin(), iter);
-  std::deque<std::string> v2(iter, v.end());
+  auto iter = v.begin() + v.size() / 2; //centerpoint
+  std::deque<std::string> v1(v.begin(), iter); //first half of deque
+  std::deque<std::string> v2(iter, v.end()); //second half of deque
 
   //divide the original deque multiple times until we get the two-element deques
   sortStrings2(v1);
@@ -77,7 +77,7 @@ int main()
   std::string t; //temp string
   std::deque<std::string> vs; //vector of strings
 
-  int stringsNum = 1000;
+  int stringsNum = 100;
   //vs = randomStrings(stringsNum); //random word testing
 
   //print each word on a new line
@@ -89,6 +89,7 @@ int main()
   */
   
   //put each word into the vector
+  
   while(std::getline(std::cin, t))
     {
       if(t == "")
@@ -96,16 +97,16 @@ int main()
       
       vs.emplace_back(t);
     }
-  
+    
     
   stringsNum = vs.size();
 
   auto start = std::chrono::high_resolution_clock::now(); //startpoint
 
   //sort the vector
-  //std::sort(vs.begin(), vs.end()); //Time taken to sort 1000 strings: 526 microseconds;
+  std::sort(vs.begin(), vs.end()); //Time taken to sort 1000 strings: 526 microseconds;
   //sortStrings(vs);                 //Time taken to sort 1000 strings: 88844 microseconds; 
-  sortStrings2(vs);                  //Time taken to sort 1000 strings: 2809 microseconds;
+  //sortStrings2(vs);                  //Time taken to sort 1000 strings: 2809 microseconds;
   
   auto stop = std::chrono::high_resolution_clock::now(); //endpoint
 
