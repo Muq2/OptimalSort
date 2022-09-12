@@ -104,8 +104,8 @@ int main()
 
   //sort the vector
   //std::sort(vs.begin(), vs.end()); //Time taken to sort 1000 strings: 526 microseconds;
-  //sortStrings(vs);                 //Time taken to sort 1000 strings: 88844 microseconds; 
-  sortStrings2(vs);                  //Time taken to sort 1000 strings: 2809 microseconds;
+  sortStrings(vs);                 //Time taken to sort 1000 strings: 88844 microseconds; 
+  //sortStrings2(vs);                  //Time taken to sort 1000 strings: 2809 microseconds;
   
   auto stop = std::chrono::high_resolution_clock::now(); //endpoint
 
