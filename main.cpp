@@ -119,6 +119,8 @@ int main()
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
  
   std::cout << "Time taken to sort " << stringsNum << " strings: " << duration.count() << " microseconds" << std::endl;
+  std::cout << "Don't be lazy, convert it to milliseconds yourself." << std::endl;
+  std::cout << "Also give me 100 plz." << std::endl;
 
   
   return 0;
